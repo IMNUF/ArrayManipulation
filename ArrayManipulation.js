@@ -78,15 +78,6 @@ function addItem() {
     displayList();
 }
 
-// SEARCH SHOPPING LIST
-function searchItems() {
-    const searchTerm = searchInput.value.trim();
-
-    const filteredItems = filterItems(searchTerm);
-
-    displayList(filteredItems);
-}
-
 
 // DISPLAY SHOPPING LIST
 function displayList() {
@@ -101,6 +92,14 @@ function displayList() {
     });
 }
 
+// SEARCH SHOPPING LIST
+function searchItems() {
+    const searchTerm = searchInput.value.trim();
+    const filteredItems = filterItems(searchTerm);
+
+    displayList(filteredItems);
+}
+
 // REMOVE LAST ITEM
 function removeLastItem() {
     shoppingList.pop();
@@ -111,3 +110,4 @@ function removeLastItem() {
 // ADD event 
 addButton.addEventListener("click", addItem);
 removeButton.addEventListener("click", removeLastItem);
+searchInput.addEventListener("click", searchItems);
