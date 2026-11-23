@@ -55,10 +55,11 @@
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
+
 // EMPTY ARRAY
 const shoppingList = [];
 
-// SELECTING HTML ELEMENTS 
+// SELECTING HTML ELEMENTS
 const itemInput = document.getElementById("itemInput");
 const addButton = document.getElementById("addButton");
 const removeButton = document.getElementById("removeButton");
@@ -78,12 +79,11 @@ function addItem() {
     displayList();
 }
 
-
 // DISPLAY SHOPPING LIST
-function displayList() {
+function displayList(items = shoppingList) {
     shoppingListElement.innerHTML = "";
 
-    shoppingList.forEach(function(item) {
+    items.forEach(function(item) {
         const listItem = document.createElement("li");
 
         listItem.textContent = item;
@@ -92,9 +92,17 @@ function displayList() {
     });
 }
 
+// FILTER ITEMS
+function filterItems(searchTerm) {
+    return shoppingList.filter(function(item) {
+        return item.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+}
+
 // SEARCH SHOPPING LIST
 function searchItems() {
     const searchTerm = searchInput.value.trim();
+
     const filteredItems = filterItems(searchTerm);
 
     displayList(filteredItems);
@@ -107,7 +115,7 @@ function removeLastItem() {
     displayList();
 }
 
-// ADD event 
+// ADD EVENTS
 addButton.addEventListener("click", addItem);
 removeButton.addEventListener("click", removeLastItem);
-searchInput.addEventListener("click", searchItems);
+searchInput.addEventListener("input", searchItems);
