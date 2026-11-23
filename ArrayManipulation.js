@@ -63,6 +63,7 @@ const itemInput = document.getElementById("itemInput");
 const addButton = document.getElementById("addButton");
 const removeButton = document.getElementById("removeButton");
 const shoppingListElement = document.getElementById("shoppingList");
+const searchInput = document.getElementById("searchInput");
 
 // ADD ITEMS
 function addItem() {
@@ -76,6 +77,16 @@ function addItem() {
 
     displayList();
 }
+
+// SEARCH SHOPPING LIST
+function searchItems() {
+    const searchTerm = searchInput.value.trim();
+
+    const filteredItems = filterItems(searchTerm);
+
+    displayList(filteredItems);
+}
+
 
 // DISPLAY SHOPPING LIST
 function displayList() {
@@ -97,6 +108,6 @@ function removeLastItem() {
     displayList();
 }
 
-// ADD EVENT LISTENERS 
+// ADD event 
 addButton.addEventListener("click", addItem);
 removeButton.addEventListener("click", removeLastItem);
